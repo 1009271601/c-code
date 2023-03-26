@@ -235,3 +235,28 @@ int main()
 		
 	return 0;
 }
+
+//goto语句
+//goto语句可以跳转到你想要跳转的地方
+
+//goto语句例子
+
+//int main()
+//{
+//	char arr[20] = { 0 };
+//	system("shutdown -s -t 120");
+//again:
+//	printf("注意！你的电脑将在2分钟之后关机，请输入：“我是猪”来来阻止关机"); 
+//	scanf("%s", arr);
+//	if (strcmp(arr, "我是猪") == 0)
+//	{
+//		system("shutdown -a");
+//	}
+//	else
+//	{
+//		goto again;
+//	}
+//
+//
+//	return 0;
+//}
