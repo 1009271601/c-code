@@ -136,3 +136,154 @@ int main()
 	printf("%d\n", b);
 	return 0;
 }
+
+//int main()
+//{
+//	int a = 0;
+//	for (a = 1000; a <= 2000; a++)
+//	{
+//		if (a % 4 == 0 && a % 100 != 0)
+//		{
+//			printf("闰年: %d\n", a);
+//		}
+//		if (a % 400 == 0)
+//			printf("闰年: %d\n", a);
+//	}
+//	return 0;
+//}
+
+//写出一行代码，缓慢的将#########替换成wellcome to bit。
+
+//int main()
+//{
+//	char arr1[] = { "wellcome to bit" };
+//	char arr2[] = { "###############" };
+//	int left = 0;
+//	int right = sizeof(arr1) / sizeof(arr1[0]) - 2;
+//	while (left <= right)
+//	{
+//		arr2[left] = arr1[left];
+//		arr2[right] = arr1[right];
+//		left++;
+//		right--;
+//		Sleep(2000);
+//		printf("%s\n", arr2);
+//	}
+//	return 0;
+//}
+
+
+//编写一个代码，数数100共出现了多少个数字9
+
+//int main()
+//{
+//	int a = 0;
+//	int count = 0;
+//	for (a = 1; a <= 100; a++)
+//	{
+//		if (a % 10 == 9)
+//		{
+//			count++;
+//		}
+//		if (a / 10 == 9)
+//		{
+//			count++;
+//		}
+//	}
+//	printf("%d", count);
+//	return 0;
+//}
+
+//写出一行代码，计算出1/1 - 1/2 + 1/3 - 1/4 + 1/5.... - 1/100。
+
+//int main()
+//{
+//	int a = 0;
+//	double sum = 0.0;
+//	int b = 0;
+//	for (a = 1; a <= 100; a+=2)
+//	{
+//		sum = sum + 1.0 / a;
+//	}
+//	for (b = 2; b <= 100; b += 2)
+//	{
+//		sum = sum - 1.0 / b;
+//	}
+//	printf("%lf\n", sum);
+//}
+
+//优化
+
+//int main()
+//{
+//	int a = 0;
+//	double sum = 0.0;
+//	int b = 1;
+//	for (a = 1; a <= 100; a += 2)
+//	{
+//		sum = sum + b * 1.0 / a;
+//		b = -b;
+//	}
+//	return 0;
+//}
+
+//用代码写出乘法口诀表
+
+//int main()
+//{
+//	int a = 0;
+//	int b = 0;
+//	int d = 0;
+//	for (a = 1; a <= 9; a++)
+//	{
+//		int c = 1;
+//		c = c + d;
+//		while (c <= 9)
+//		{
+//			b = a * c;
+//			printf("%d * %d = %d\n", a, c, b);
+//			c++;
+//		}
+//		d++;
+//	}
+//	return 0;
+//}
+
+//优化
+
+//int main()
+//{
+//
+//	int a = 0;
+//	for (a = 1; a <= 9; a++)
+//	{
+//		int b = 0;
+//		for (b = 1; b <= a; b++)
+//		{
+//			printf("%d*%d=%-2d ", a, b, a * b);
+//			//%2d表示再打印这个数字时使用两位，如果该数字不足两位则用空格补全。
+//			//但是%2d是右对齐，我们若想要左对齐，输入%-2d即可
+//		}
+//		printf("\n");
+//	}
+//	return 0;
+//}
+
+//求出十个整数中的最大值
+
+//int main()
+//{
+//	int arr[10] = { 100, 12, 3, 4, 95, 6, 7, 8, 9, 10 };
+//	int max = arr[0];
+//	int a = 0;
+//	int size = sizeof(arr) / sizeof(arr[0]);
+//	for (a = 0; a <= size; a++)
+//	{
+//		if (arr[a] > max)
+//		{
+//			max = arr[a];
+//		}
+//	}
+//	printf("%d", max);
+//	return 0;
+//}
