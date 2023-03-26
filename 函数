@@ -1,0 +1,26 @@
+//库函数--strcpy
+//字符打印函数
+
+//使用
+//int main()
+//{
+//	char arr1[] = { "hello bit" };
+//	char arr2[] = { "###########" };
+//	strcpy(arr2, arr1);
+//	printf("%s\n", arr2);
+//	return 0;
+//}
+
+
+//库函数--memset
+//内存设置函数
+
+//使用
+//int main()
+//{
+//	char arr1[] = { "hello bit" };
+//	memset(arr1, '4', 5);
+//	//不可以放字符串，可以放字符
+//	printf("%s/n", arr1);
+//	return 0;
+//}
