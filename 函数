@@ -1,26 +1,662 @@
-//库函数--strcpy
-//字符打印函数
+库函数--strcpy
+字符打印函数
 
-//使用
-//int main()
-//{
-//	char arr1[] = { "hello bit" };
-//	char arr2[] = { "###########" };
-//	strcpy(arr2, arr1);
-//	printf("%s\n", arr2);
-//	return 0;
-//}
+使用
+int main()
+{
+	char arr1[] = { "hello bit" };
+	char arr2[] = { "###########" };
+	strcpy(arr2, arr1);
+	printf("%s\n", arr2);
+	return 0;
+}
 
 
-//库函数--memset
-//内存设置函数
+库函数--memset
+内存设置函数
 
-//使用
-//int main()
-//{
-//	char arr1[] = { "hello bit" };
-//	memset(arr1, '4', 5);
-//	//不可以放字符串，可以放字符
-//	printf("%s/n", arr1);
-//	return 0;
-//}
+使用
+int main()
+{
+	char arr1[] = { "hello bit" };
+	memset(arr1, '4', 5);
+	//不可以放字符串，可以放字符
+	printf("%s/n", arr1);
+	return 0;
+}
+
+
+自定义函数
+ret_type fun_name(paral, *)
+{
+	statement;//语句项
+	 用于函数的实现
+}
+ret_type 返回类型
+fun_name 函数名
+paral 函数参数
+
+函数的声明
+当然，函数的定义真正的用法并不是这样的
+创建一个头文件，把声明放进里面
+创建另外一个用于存放自定义函数的源文件，把函数放里面
+当你在主源文件里想要利用该自定义函数时，只需要输入include"函数名,h"就可以调用了。
+
+int Add(int, int)
+int main()
+{
+	double a = 0.0;
+	double b = 0.0;
+	scanf("%lf%lf", &a, &b);
+	//函数的调用
+	double sum = Add(a, b);
+	printf("%f\n", sum);
+	return 0;
+}
+函数的定义
+int Add(int x, int y)
+{
+	int z = x + y;
+	return z;
+}
+
+利用函数实现选取较大值
+定义函数
+get_max(int x, int y)
+{
+	return((x > y) ? x : y);
+}
+
+
+int main()
+{
+	int a = 0;
+	int b = 0;
+	scanf("%d%d", &a, &b);
+	//函数的使用
+	int max = get_max(a, b);
+	printf("%d\n", max);
+	max = get_max(123, 234);
+	printf("%d\n", max);
+	return 0;
+}
+
+
+
+
+利用函数打印三个人的名字(利用数组）
+
+void say_hi(char name[])
+{
+	printf("hello, %s\n", name);
+}
+int main()
+{
+	say_hi("Sheng");
+	say_hi("Lin");
+	say_hi("Shutao");
+}
+
+当然，你也可以这么写
+
+void say_hi(char name[])
+{
+	printf("hello, %s\n", name);
+}
+int main()
+{
+	char arr1[20] = { "Sheng" };
+	char arr2[20] = { "Lin" };
+	char arr3[20] = { "Shutao" };
+	say_hi(arr1);
+	say_hi(arr2);
+	say_hi(arr3);
+}
+
+此外，我们还可以引用多个不同类型的变量
+
+void say_hi(char name[], int age)
+{
+	printf("hello %s, you are %d.\n", name, age);
+}
+int main()
+{
+	say_hi("Sheng", 18);
+	say_hi("Lin", 18);
+	say_hi("Shutao", 17);
+	return 0;
+}
+
+
+函数的嵌套的调用
+
+void say_hi()
+{
+	printf("hello, man.\n");
+}
+void redo_three_time()
+{
+	int a = 0;
+	for (a = 1; a <= 3; a ++ )
+	{
+		say_hi();
+	}
+}
+int main()
+{
+	redo_three_time();
+	return 0;
+}
+
+函数的链式访问
+
+int main()
+{
+	printf("%d", printf("%d", printf("%d", 43)));
+	//当函数在进行链式访问时，外面的函数调用的是内部函数的返回值
+	//printf函数的返回值为它打印的字符的个数，所以答案为4321.
+	//字符个数即为""里面字符的数量，空格也算，%d算作一个字符。
+	return 0;
+}
+
+链式访问的运用
+
+int Add(int x, int y)
+{
+	int z = x + y;
+	return z;
+
+}
+int Minus(int x, int y)
+{
+	int z = x - y;
+	return z;
+
+}
+int Time(int x, int y)
+{
+	int z = x * y;
+	return z;
+}
+int main()
+{
+	int a = 6;
+	int b = 3;
+	scanf("%d%d", &a, &b);
+	int time = Time(Add(a, b), Minus(a, b));
+	printf("%d", time);
+	return 0;
+}
+
+
+
+
+写一个函数可以交换两个整型变量的内容。
+
+错误的演示
+
+void change(int x, int y)
+{
+	int tmp = 0;
+	tmp = y;
+	y = x;
+	x = tmp;
+}
+int main()
+{
+	int a = 0;
+	int b = 0;
+	scanf("%d%d", &a, &b);
+	printf("%d, %d\n", a, b);
+	change(a, b);
+	//这里我们可以看到a和b并没有变
+	//因为它们并没有收到x和y的影响
+	//因为a和b只是把变量的值传输给x和y而已，简单来说它们被存放在不同的变量处。
+	//也就是说它们本质上是两个变量，只不过变量的值相同罢了
+	printf("%d, %d\n", a, b);
+	return 0;
+}
+
+正确的方法
+
+我们需要通过自定义函数修改存放在a和b里面的值，而不是把他们的值传输给其它变量。
+所以，我们需要用到指针变量，通过找到a与b的地址来直接修改存放于a于b地址中的变量
+
+void Swaps(int* x, int* y)//这里由于接收到的为地址，所以这里的类型也需要改成用于存储地址的指针变量类型，而不是不同的类型
+//这个叫做形参。
+//当实参传给形参时，形参其实是实参的一份临时拷贝
+//他们都具有一样的值，但是具有不一样的地址。（也就是说他们存放于不同的地方）
+//对形参的修改是不会影响实参的（指针变量除外）
+{
+	int tmp = 0;
+	tmp = *y;
+	*y = *x;
+	*x = tmp;
+	//当你不需要返回值时，使用void，void代表这个函数没有返回值。
+}
+int main()
+{
+	int a = 0;
+	int b = 0;
+	//上面的统称实参。
+	scanf("%d%d", &a, &b);
+	printf("a = %d, b = %d\n", a, b);
+	Swaps(&a, &b);//不需要返回值，也就是return，因为没有什么可以返回的。这只不过是调用这个函数而已，并没有一个具体的值可以被传输回来。
+	//这里通过取地址符号，将存放于a和b地址处的数值直接传输给自定义函数，并在自定义函数里实现修改数值。
+	//这么做不会发生上面的情况，因为这里是通过取地址符号来对a和b的值直接进行修改，而不是将a和b的值赋值给x和y。
+	printf("a = %d, b = %d\n", a, b);
+	return 0;
+}
+
+传值调用
+
+int max = Max（a， b）
+函数的形参和实参分别占有不同的内存块，对形参的改动不会影响实参。
+
+传址调用
+
+int sum = Max（&a， &b）
+传址调用是把函数外部创建的变量的地址传递给函数参数的一种函数调用方式
+这种传参方式可以使函数与函数外部的变量建立起真正的联系，也就是函数内部可以直接操作函数外部的变量。
+
+
+函数练习
+
+
+写一个函数。判断一个数是不是素数
+
+int sushu(int x)
+{
+	int z = 0;
+	int y = 0;
+	for (y = 2; y <= x; y++)
+	{
+		if (x % y == 0 && x != y)
+		{
+			break;
+		}
+		if (y == x)
+		{
+			z = x;
+
+		}
+	}
+	
+	return z;
+}
+int main()
+{
+	int a = 0;
+	scanf("%d", &a);
+	int answer = sushu(a);
+	if (answer == 0)
+	{
+		printf("该数不是素数");
+	}
+	else
+	{
+		printf("该数为素数");
+	}
+	
+	return 0;
+}
+
+改变，将其变成求100-200之间的素数
+
+int is_sushu(int x, int* y)
+{
+	int a = 0;
+	int d = 0;
+	int c = 0;
+	for (a = 2; a <= x; a++)
+	{
+		if (x % a == 0 && x != a)
+		{
+			break;
+		}
+		if (x == a)
+		{
+			c = 1;
+			*y = *y + 1;
+		}
+	}
+	return c;
+}
+int main()
+{
+	
+	int b = 0;
+	int d = 0;
+	for (b = 101; b <= 200; b++)
+	{
+		if (is_sushu(b, &d) == 1)
+		{
+			printf("%d\n", b);
+		}
+	}
+	printf("100-200之间，一共有%d个素数。", d);
+	return 0;
+}
+
+用函数写出一个能求出n！的代码
+
+int answer(int x)
+{
+	int ret = 1;
+	int b = 0;
+	for (b = 1; b <= x; b++)
+	{
+		ret = ret * b;
+	}
+	return ret;
+}
+int main()
+{
+	int n = 0;
+	scanf("%d", &n);
+	int sum = answer(n);
+	printf("%d", sum);
+	return 0;
+}
+
+用函数写出一个能求出n!+(n-1)!+(n-2)!...的代码。
+
+int fuction(int x)
+{
+	int a = 0;
+	int sum = 0;
+	for (a = 1; a <= x; a++)
+	{
+		int ret = 1;
+		int b = 0;
+
+		for (b = 1; b <= a; b++)
+		{
+			ret = ret * b;
+		}
+		sum = sum + ret;
+	}
+	return sum;
+}
+int main()
+{
+	int n = 0;
+	scanf("%d", &n);
+	int ans = fuction(n);
+	printf("%d", ans);
+	return 0;
+}
+
+用函数判断一年是不是闰年
+
+int year(int x)
+{
+	int b = 0;
+	if (x % 4 == 0 && x % 100 != 0)
+	{
+		b = x;
+	}
+	else if (x % 400 == 0)
+	{
+		b = x;
+	}
+	return b;
+}
+int main()
+{
+	int a = 0;
+	scanf("%d", &a);
+	int sum = year(a);
+	if (sum == 0)
+	{
+		printf("该年份不是闰年\n");
+	}
+	else
+	{
+		printf("该年份是闰年\n");
+	}
+	return 0;
+}
+
+写一个函数，每次调用这个函数，num的值增加1.
+
+void Increase(int* x)
+{
+	*x = *x + 1;
+
+}
+int main()
+{
+	int num = 0;
+	int a = 0;
+again:
+	while (1)
+	{
+		scanf("%d", &a);
+		Increase(&num);
+		printf("%d\n", num);
+		if (a == 0)
+		{
+			break;
+		}
+		else
+		{
+			goto again;
+		}
+	}
+	
+	
+	return 0;
+}
+
+写一个函数，实现一个整形有序数组的二分查找
+
+
+                     虽然不是整个数组，但依旧需要传过来，因为在对比上标的时候需要用到c这个数组名称。
+int Find(int x, int y, int c[])
+{//                    注意，这里并不是一个数组，而是一个指针，c[]本身有着指针的功效，能够存放地址。
+	int left = 0;
+	int right = y - 1;
+	while (left <= right)
+	{
+		int mid = (right + left) / 2;
+	
+		if (c[mid] < x)
+		{
+			left = mid + 1;
+			
+		}
+		else if (c[mid] > x)
+		{
+			right = mid - 1;
+		}
+		else
+		{
+			return mid;
+		}
+	}
+	return -1;
+}
+int main()
+{
+	int arr[] = { 1,3,5,7,9,13,45,67,890 };
+	int a = 0;
+	scanf("%d", &a);
+	int size = sizeof(arr) / sizeof(arr[0]);
+	int sum = Find(a, size, arr);
+	//                      穿过去的不是一个数组，而是数组第一个元素的地址
+	if (sum == -1)
+	{
+		printf("该列表里没有此数\n");
+	}
+	else
+	{
+		printf("找到了，该数的下标为：%d\n", sum);
+	}
+
+	return 0;
+}
+
+
+
+用函数写出一个拥有多重功能的计算机。
+
+
+int main()
+{
+	int a = 1;
+	do
+	{
+	again:
+		printf("#######################################\n");
+		printf("#######  欢迎使用多功能计算机! ########\n");
+		printf("#######   开始（1）  退出（0） ########\n");
+		printf("#######################################\n");
+		
+		printf("请输入1或0：\n");
+		scanf("%d", &a);
+		if (a != 0 && a != 1)
+		{
+			printf("该数字不在可执行范围内，请重新输入：\n");
+			goto again;
+		}
+		if (a == 0)
+		{
+			printf("已退出。\n");
+			break;
+		}
+		printf("1：加法\n");
+		printf("2：减法\n");
+		printf("3：乘法\n");
+		printf("4：除法\n");
+		printf("5：平方\n");
+		printf("6：平方根\n");
+		printf("7：素数\n");
+		printf("8：最大公约数\n");
+		printf("9：n！\n");
+		printf("10：n!+(n-1)!+(n-2)!...\n");
+		printf("请根据要求输入对应的数字：\n");
+		int b = 0;
+		scanf("%d", &b);
+
+		switch (b)
+		{
+		case(1):
+		{
+			double num1 = 0;
+			double num2 = 0;
+			printf("输入两个数字：\n");
+			scanf("%lf%lf", &num1, &num2);
+			double sum1 = Add(num1, num2);
+			printf("结果为：%f\n", sum1);
+			break;
+		}
+		case(2):
+		{
+			double num3 = 0;
+			double num4 = 0;
+			printf("输入两个数字：\n");
+			scanf("%lf%lf", &num3, &num4);
+			double sum2 = Minus(num3, num4);
+			printf("结果为：%f\n", sum2);
+			
+			break;
+		}
+		case(3):
+		{
+			double num3 = 0;
+			double num4 = 0;
+			printf("输入两个数字：\n");
+			scanf("%lf%lf", &num3, &num4);
+			double sum = Time(num3, num4);
+			printf("结果为：%f\n", sum);
+			break;
+		}
+		case(4):
+		{
+			double num3 = 0;
+			double num4 = 0;
+			printf("输入两个数字：\n");
+			scanf("%lf%lf", &num3, &num4);
+			double sum = Division(num3, num4);
+			printf("结果为：%f\n", sum);
+			break;
+		}
+		case(5):
+		{
+			
+			double num4 = 0;
+			printf("输入一个数字：\n");
+			scanf("%lf", &num4);
+			double sum = Square(num4);
+			printf("结果为：%f\n", sum);
+			break;
+		}
+		case(6):
+		{
+			
+			double num4 = 0;
+			printf("输入一个数字：\n");
+			scanf("%lf", &num4);
+			double sum = Square_root(num4);
+			printf("结果为：%f\n", sum);
+			break;
+		}
+		case(7):
+		{
+			
+			int num4 = 0;
+			printf("输入一个数字：\n");
+			scanf("%d", &num4);
+			int sum = Su_shu(num4);
+			if (sum == 0)
+			{
+				printf("该数不是素数。\n");
+			}
+			else
+			{
+				printf("%d为素数。\n", sum);
+			}
+			break;
+		}
+		case(8):
+		{
+			int num3 = 0;
+			int num4 = 0;
+			printf("输入两个数字：\n");
+			scanf("%d%d", &num3, &num4);
+			int sum = Gong_yue_shu(num3, num4);
+			printf("结果为：%d\n", sum);
+			break;
+		}
+		case(9):
+		{
+			
+			int num4 = 0;
+			printf("输入一个数字：\n");
+			scanf("%d", &num4);
+			int sum = N(num4);
+			printf("结果为：%d\n", sum);
+			break;
+		}
+		case(10):
+		{
+			
+			int num4 = 0;
+			printf("输入一个数字：\n");
+			scanf("%d", &num4);
+			int sum = Sum_n(num4);
+			printf("结果为：%d\n", sum);
+			break;
+		}
+		default:
+		{
+			printf("该数不在可执行范围内!\n");
+			break;
+		}
+		}
+	} while (a);
+
+
+	return 0;
+}
